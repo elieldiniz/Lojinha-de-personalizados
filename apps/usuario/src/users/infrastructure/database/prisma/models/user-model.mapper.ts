@@ -1,7 +1,7 @@
+/* eslint-disable prettier/prettier */
 import { UserEntity } from "@/users/domain/entities/user.entity";
 import { User } from "@prisma/client";
 import { ValidationError } from "@/shared/domain/erros/validation-erros"
-
 
 export class UsersModulemMapper {
   static toEntity(model: User){

@@ -14,8 +14,9 @@ export default function Cabecalho() {
             }}
         >
             <div className="flex-1 container flex flex-col justify-center">
+
                 <div className="flex justify-between items-center">
-                    <Logo />
+                <Logo />
                     <Link href="/checkout/carrinho">
                         <IconeCarrinho qtdeItens={qtdeItens} />
                     </Link>

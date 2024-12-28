@@ -5,7 +5,6 @@ import { ConflictErro } from '@/shared/domain/erros/conflict-erros copy'
 import { InMemorySearchebleRepository } from '@/shared/domain/repositories/in-memory-searcheble.repository'
 import { SortDirection } from '@/shared/domain/repositories/searchble-repository-contracts'
 
-
 export class UserInMemoryRepository
   extends InMemorySearchebleRepository<UserEntity>
   implements UserRepository.Repository

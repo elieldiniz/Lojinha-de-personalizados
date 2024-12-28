@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { NotFoudError } from "@/shared/domain/erros/not-foud-erros";
 import { PrismaService } from "@/shared/infrastructure/database/prisma/prisma.service";
 import { UserEntity } from "@/users/domain/entities/user.entity";
@@ -11,10 +12,10 @@ export class UserPrismaRepository implements UserRepository.Repository{
   constructor(private prismaService: PrismaService){
 
   }
-
   findByEmail(email: string): Promise<UserEntity> {
-    throw new Error("Method not implemented."),
+    throw new Error("Method not implemented.");
   }
+  
 
   emailExists(email: string): Promise<void> {
     throw new Error("Method not implemented.")
