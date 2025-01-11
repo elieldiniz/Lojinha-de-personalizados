@@ -1,0 +1,35 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Usuario {
+  id              String   @id @default(uuid()) @map("id") // UUID como identificador único
+  nome            String   @map("nome")        // Nome completo do usuário
+  email           String   @unique @map("email") // E-mail único
+  senha           String   @map("senha")       // Senha criptografada
+  telefone        String?  @map("telefone")    // Telefone de contato
+  endereco        String?  @map("endereco")    // Endereço completo
+  cpf             String?  @unique @map("cpf") // CPF único (opcional)
+  dataCriacao     DateTime @default(now()) @map("data_criacao") // Data de criação
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao")  // Data de última atualização
+  perfil          Perfil   @default(CLIENTE) @map("perfil")     // Enum para diferenciar ADMIN de CLIENTE
+  status          Boolean  @default(true) @map("status")        // Indica se o usuário está ativo
+
+  @@map("usuarios") // Nome da tabela no banco de dados
+}
+
+enum Perfil {
+  ADMIN    // Administrador do sistema
+  CLIENTE  // Cliente que compra os produtos
+}
