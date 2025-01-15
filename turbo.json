@@ -16,6 +16,11 @@
     "dev": {
       "cache": false,
       "persistent": true
+    },
+    "prisma:generate": {
+      "cache": false,
+      "outputs": ["backend/node_modules/@prisma/client"],
+      "inputs": ["backend/prisma/schema.prisma", "backend/.env*"]
     }
   }
 }

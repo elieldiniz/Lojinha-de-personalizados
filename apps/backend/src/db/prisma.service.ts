@@ -6,14 +6,11 @@ import { PrismaClient } from '@prisma/client';
 @Global()
 @Injectable()
 export class PrismaService extends PrismaClient implements OnModuleInit, OnModuleDestroy {
-
-    onModuleInit() {
-        this.$connect();
+    async onModuleInit() {
+      await this.$connect();
     }
-
-    onModuleDestroy() {
-      this.$disconect()
+  
+    async onModuleDestroy() {
+      await this.$disconnect();
     }
-
-    
-}
+  }
