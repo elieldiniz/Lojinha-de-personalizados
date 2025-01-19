@@ -28,7 +28,10 @@ model Usuario {
   status          Boolean  @default(true) @map("status")        // Indica se o usuário está ativo
 
   @@map("usuarios") // Nome da tabela no banco de dados
+  
 }
+
+
 
 enum Perfil {
   ADMIN    // Administrador do sistema

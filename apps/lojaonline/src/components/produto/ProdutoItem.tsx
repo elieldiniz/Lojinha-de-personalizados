@@ -14,12 +14,12 @@ export default function ProdutoItem(props: ProdutoItemProps) {
     return (
         <Link
             href={`/produto/${props.produto.id}`}
-            className="flex flex-col bg-violet-dark border border-white/10 rounded-xl relative max-w-[350px]"
+            className="flex flex-col bg-violet-dark border  border-purple-500 rounded-xl relative max-w-[350px]"
         >
             <div className="absolute flex justify-end top-2.5 right-2.5">
                 <NotaReview nota={props.produto.nota} />
             </div>
-            <div className="w-full h-48 relative">
+            <div className="w-full h-64 relative">
                 <Image
                     src={produto.imagem}
                     fill
@@ -58,6 +58,14 @@ export default function ProdutoItem(props: ProdutoItemProps) {
                 >
                     <IconShoppingCartPlus size={20} />
                     <span>Adicionar</span>
+                </button>
+                <button
+                    className="
+                      flex justify-center items-center gap-2 h-8
+                      bg-emerald-500 text-zinc-950 hover:border-2 border-zinc-950  rounded-full
+                    ">
+
+                    <span>Duvisdas Pelo Whatsapp</span>
                 </button>
             </div>
         </Link>

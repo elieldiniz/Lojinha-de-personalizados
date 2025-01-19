@@ -17,7 +17,7 @@ export default function BannerCompra(props: BannerCompraProps) {
 
     return (
         <div className="flex">
-            <div className="flex flex-col border-r border-zinc-500 pr-5">
+            <div className="flex flex-col border-r border-purple-500 pr-5">
                 <div className="line-through text-zinc-400">de R$ {produto?.precoBase}</div>
                 <div className="text-2xl font-semibold">
                     <span className="text-base text-zinc-300">por</span>{' '}

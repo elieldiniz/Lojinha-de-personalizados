@@ -1,40 +1,25 @@
 /* eslint-disable prettier/prettier */
-import {Body, Controller, Post } from '@nestjs/common';
-
-
-import { PrismaService } from 'src/db/prisma.service';
-
-interface UsuarioDTO {
-    id?: number
-    nome: string
-    email: string
-    senha?: string
-    telefone?: string
-    perfil?: string
-}
-
+import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import UsuarioDTO from './ausuario';
+import { UsuarioRepositorio } from './usuario.repositorio';
 
 @Controller('auth')
 export class AuthController {
+  constructor(private readonly repo: UsuarioRepositorio) {}
 
-    constructor(private readonly prisma: PrismaService){}
+  @Post('registrar')
+  async registrar(@Body() usuario: UsuarioDTO) {
+    // Verifica se o e-mail já existe no banco de dados
+    const usuarioExistente = await this.repo.buscarPorEmail(usuario.email);
 
-    @Post('login')
-    async login(){
-        return 'login'
+    if (usuarioExistente) {
+      throw new HttpException('Usuário já existe', 400);
     }
 
-    @Post('registrar')
-    async registrar(@Body() usuario: UsuarioDTO) {
-    
-        await this.prisma.usuario.create({
-            data: {
-                nome: usuario.nome,
-                email: usuario.email,
-                senha: usuario.senha,
-                telefone: usuario.telefone
-            },
-        });
-    }
-    
+    // Salva o usuário no banco de dados
+    const novoUsuario = await this.repo.salvar(usuario);
+
+    // Retorna o usuário criado
+    return novoUsuario;
+  }
 }
