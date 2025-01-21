@@ -1,35 +1,38 @@
-/* eslint-disable prettier/prettier */
-import { Injectable, Logger } from '@nestjs/common';
-import UsuarioDTO from './ausuario';
+import { Injectable, Logger, HttpException } from '@nestjs/common';
+import { UsuarioDTO } from './usuarioDTO';
 import { PrismaService } from 'src/db/prisma.service';
 import { Usuario } from '@prisma/client';
 
 @Injectable()
 export class UsuarioRepositorio {
-
     private readonly logger = new Logger(UsuarioRepositorio.name);
 
-    constructor(private readonly prisma: PrismaService) {
+    constructor(private readonly prisma: PrismaService) {}
 
-    }
-
-    async salvar(usuario: UsuarioDTO): Promise<void> {
+    async salvar(usuario: UsuarioDTO): Promise<Usuario> { // Retorna o tipo Usuario
         this.logger.log('Salvando usuário...');
-        if (usuario.id) {
-            try {
-                await this.prisma.usuario.upsert({
-                    where: { id: usuario.id },
-                    update: {
-                        nome: usuario.nome,
-                        email: usuario.email,
-                        senha: usuario.senha
-                    },
-                    create: usuario as any
-                });
-                this.logger.log('Usuário salvo com sucesso!');
-            } catch (error) {
-                this.logger.error('Erro ao salvar usuário:', error);
-            }
+
+        // Verifica se a senha foi informada, caso contrário lança um erro
+        if (!usuario.senha) {
+            throw new HttpException('Senha é obrigatória.', 400);
+        }
+
+        try {
+            const usuarioSalvo = await this.prisma.usuario.upsert({
+                where: { id: usuario.id || '' },
+                update: {
+                    nome: usuario.nome,
+                    email: usuario.email,
+                    senha: usuario.senha, // A senha agora é obrigatória
+                },
+                create: usuario, // Aqui o DTO será usado diretamente
+            });
+
+            this.logger.log('Usuário salvo com sucesso!');
+            return usuarioSalvo; // Retorna o usuário salvo
+        } catch (error) {
+            this.logger.error('Erro ao salvar usuário:', error);
+            throw new HttpException('Erro ao salvar usuário', 500);
         }
     }
 
@@ -44,5 +47,4 @@ export class UsuarioRepositorio {
             return null;
         }
     }
-
 }
