@@ -1,12 +1,17 @@
 {
-  "name": "core",
+  "name": "@iroperson/core",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+   "dev": "tsup src/index.ts --dts --watch",
+   "build": "tsup src/index.ts --dts --minify"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "tsup": "^8.3.5"
+  }
 }

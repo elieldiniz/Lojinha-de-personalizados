@@ -3,6 +3,7 @@ import { Body, Controller, HttpException, Post, ValidationPipe,UsePipes } from '
 import { UsuarioRepositorio } from './usuario.repositorio';
 
 import { UsuarioDTO } from './usuarioDTO'; // Importando o DTO de Usuario
+import { RegistrarUsuarios } from '@iroperson/core';
 
 @Controller('auth')
 export class AuthController {
@@ -11,7 +12,10 @@ export class AuthController {
   @Post('registrar')
   @UsePipes(new ValidationPipe({ whitelist: true, forbidNonWhitelisted: true }))
   async registrar(@Body() usuarioDTO: UsuarioDTO) { // Usando o DTO de Usuario aqui
-    // Verifica se o e-mail já existe no banco de dados
+
+    const CasoDeUso = new RegistrarUsuarios()
+    await CasoDeUso.executar(usuarioDTO)
+
     const usuarioExistente = await this.repo.buscarPorEmail(usuarioDTO.email);
 
     if (usuarioExistente) {

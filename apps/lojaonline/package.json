@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@iroperson/core": "*",
     "@tabler/icons": "^3.26.0",
     "@tabler/icons-react": "^3.26.0",
     "next": "15.1.2",

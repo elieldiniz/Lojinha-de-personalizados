@@ -1,5 +1,5 @@
 'use client'
-import { produtos } from '@/core'
+import { produtos } from '@iroperson/core'
 // import useProdutos from '@/data/hooks/useProdutos'
 import ProdutoItem from './ProdutoItem'
 import ProdutoNaoEncontrado from './ProdutoNaoEncontrado'
