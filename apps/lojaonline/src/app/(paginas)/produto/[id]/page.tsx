@@ -9,6 +9,11 @@ interface PaginaProdutoProps {
   params: { id: string }; // Mantemos o tipo simples e síncrono
 }
 
+/*------
+Resolver Peblema de rota id , na hora do build 
+--------*/
+
+
 export default async function PaginaProduto({ params }: PaginaProdutoProps) {
   const id = Number(params.id); // Converte o ID para número
   if (isNaN(id)) return <ProdutoNaoEncontrado />;
