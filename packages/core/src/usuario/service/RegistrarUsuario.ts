@@ -3,7 +3,7 @@ import Usuario from "../model/Usuario";
 import ProvedorCriptografia from "../provider/ProvedorCriptografia";
 import RepositorioUsuario from "../provider/RepositorioUsuario";
 
-export default class RegistrarUsuarios implements CasoDeUso{
+export default class RegistrarUsuarios implements CasoDeUso<Usuario,void>{
 
     constructor(private readonly repo : RepositorioUsuario, private readonly cripto: ProvedorCriptografia){
         

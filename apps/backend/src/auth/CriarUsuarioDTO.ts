@@ -1,7 +1,7 @@
 import { IsEmail, IsOptional, IsString, Length, IsEnum } from 'class-validator';
 import { Perfil } from '@prisma/client';  // Importe a enumeração Perfil do Prisma
 
-export class UsuarioDTO {
+export class CriarUsuarioDTO {
     @IsOptional()
     @IsString()
     id?: string;
