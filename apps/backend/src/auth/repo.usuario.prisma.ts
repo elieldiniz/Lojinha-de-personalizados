@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, Logger, HttpException } from '@nestjs/common';
 import { UsuarioDTO } from './usuarioDTO';
 import { PrismaService } from 'src/db/prisma.service';
