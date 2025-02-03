@@ -6,12 +6,10 @@ import * as bcrypt from 'bcrypt'
 export class BcryptProvider implements ProvedorCriptografia {
     async criptografar(senha: string): Promise<string> {
         const salt = await bcrypt.genSalt(10);
-        return await bcrypt.hash(senha, salt)
+        return await bcrypt.hash(senha, salt);
     }
 
-    comparar(senha: string, senhaCriptografada: string): Promise<boolean> {
-        throw new Error('Method not implemented.');
+    async comparar(senha: string, senhaCriptografada: string): Promise<boolean> {
+        return await bcrypt.compare(senha, senhaCriptografada);
     }
-  
-    
 }

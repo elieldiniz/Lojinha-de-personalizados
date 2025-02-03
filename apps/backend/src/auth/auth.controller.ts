@@ -4,7 +4,7 @@ import { UsuarioRepositorio } from './repo.usuario.prisma';
 import { CriarUsuarioDTO } from './CriarUsuarioDTO'; 
 import { LoginUsuario, RegistrarUsuarios } from '@iroperson/core';
 import { BcryptProvider } from './bcrypt.provider';
-import { log } from 'console';
+import * as jwt from 'jsonwebtoken'
 
 @Controller('auth')
 export class AuthController {
@@ -40,7 +40,8 @@ export class AuthController {
   async login(@Body()dados: {email: string, senha: string}){
     const casoDeUso = new LoginUsuario(this.repo, this.cripto)
     const usuario =  await casoDeUso.executar({email: dados.email, senha: dados.senha})
-
-    return 'login'
+    const segredo =  process.env.JWT_Secret
+    const usuarioJwt = jwt.sign(usuario, segredo, {expiresIn :'15d'})
+    return usuarioJwt
   }
 }
