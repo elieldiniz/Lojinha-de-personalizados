@@ -15,25 +15,103 @@ datasource db {
 }
 
 model Usuario {
-  id              String   @id @default(uuid()) @map("id") // UUID como identificador único
-  nome            String   @map("nome")        // Nome completo do usuário
-  email           String   @unique @map("email") // E-mail único
-  senha           String   @map("senha")       // Senha criptografada
-  telefone        String?  @map("telefone")    // Telefone de contato
-  endereco        String?  @map("endereco")    // Endereço completo
-  cpf             String?  @unique @map("cpf") // CPF único (opcional)
-  dataCriacao     DateTime @default(now()) @map("data_criacao") // Data de criação
-  dataAtualizacao DateTime @updatedAt @map("data_atualizacao")  // Data de última atualização
-  perfil          Perfil   @default(CLIENTE) @map("perfil")     // Enum para diferenciar ADMIN de CLIENTE
-  status          Boolean  @default(true) @map("status")        // Indica se o usuário está ativo
+  id              String   @id @default(uuid()) @map("id")
+  nome            String   @map("nome")
+  email           String   @unique @map("email")
+  senha           String   @map("senha")
+  telefone        String?  @map("telefone")
+  endereco        String?  @map("endereco")
+  cpf             String?  @unique @map("cpf")
+  dataCriacao     DateTime @default(now()) @map("data_criacao")
+  dataAtualizacao DateTime @updatedAt @map("data_atualizacao")
+  perfil          Perfil   @default(CLIENTE) @map("perfil")
+  status          Boolean  @default(true) @map("status")
 
-  @@map("usuarios") // Nome da tabela no banco de dados
-  
+  pedidos Pedido[]
+
+  @@map("usuarios")
 }
 
+model Produto {
+  id               Int      @id @default(autoincrement()) @map("id")
+  nome             String   @map("nome")
+  descricao        String   @map("descricao")
+  imagem           String   @map("imagem")
+  nota             Float?   @map("nota")
+  videoRevisao     String?  @map("video_revisao")
+  tags             String[] @map("tags")
+  precoBase        Float    @map("preco_base")
+  precoPromocional Float?   @map("preco_promocional")
+  personalizavel   Boolean  @default(false) @map("personalizavel")
+  mockup           String?  @map("mockup")
+  especificacoes   Json     @map("especificacoes")
+  destaque         String?  @map("destaque")
 
+  itens ItemPedido[]
+
+  @@map("produtos")
+}
+
+model Pedido {
+  id             Int      @id @default(autoincrement()) @map("id")
+  usuario        Usuario  @relation(fields: [usuarioId], references: [id])
+  usuarioId      String   @map("usuario_id")
+  data           DateTime @default(now()) @map("data")
+  valorTotal     Float    @map("valor_total")
+  status         StatusPedido @default(PENDENTE) @map("status")
+  formaPagamento FormaPagamento @map("forma_pagamento")
+
+  entrega   PedidoEntrega @relation(fields: [entregaId], references: [id])
+  entregaId Int           @unique @map("entrega_id")
+
+  itens ItemPedido[]
+
+  @@map("pedidos")
+}
+
+model ItemPedido {
+  id            Int     @id @default(autoincrement()) @map("id")
+  quantidade    Int     @map("quantidade")
+  precoUnitario Float   @map("preco_unitario")
+  pedido        Pedido  @relation(fields: [pedidoId], references: [id])
+  pedidoId      Int     @map("pedido_id")
+  produto       Produto @relation(fields: [produtoId], references: [id])
+  produtoId     Int     @map("produto_id")
+
+  @@map("itens_pedido")
+}
+
+model PedidoEntrega {
+  id          Int     @id @default(autoincrement()) @map("id")
+  nome        String  @map("nome")
+  email       String  @map("email")
+  cpf         String  @map("cpf")
+  logradouro  String  @map("logradouro")
+  complemento String? @map("complemento")
+  cidade      String  @map("cidade")
+  estado      String  @map("estado")
+
+  pedido Pedido?
+
+  @@map("pedidos_entrega")
+}
+
+enum StatusPedido {
+  PENDENTE
+  EM_PROCESSAMENTO
+  ENVIADO
+  ENTREGUE
+  CANCELADO
+}
+
+enum FormaPagamento {
+  CARTAO
+  PIX
+  BOLETO
+  DINHEIRO
+}
 
 enum Perfil {
-  ADMIN    // Administrador do sistema
-  CLIENTE  // Cliente que compra os produtos
+  ADMIN
+  CLIENTE
 }
