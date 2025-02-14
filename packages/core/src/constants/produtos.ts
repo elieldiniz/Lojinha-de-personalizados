@@ -6,7 +6,7 @@ const produtos: Produto[] = [
           id: 1,
           nome: 'Caneca Dia das Mães - "Melhor Mãe do Mundo"',
           descricao: 'Caneca especial para o Dia das Mães, com a frase "Melhor Mãe do Mundo" estampada.',
-          imagem: 'https://i.postimg.cc/7ZchWRYd/mothers-day-cup.png',
+          imagem: '',
           nota: 4.9,
           videoRevisao: 'https://www.youtube.com/embed/exampleVideo1',
           tags: ['Dia das Mães', 'Presente'],

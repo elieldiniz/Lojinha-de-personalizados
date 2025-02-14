@@ -11,6 +11,8 @@ export default class RegistrarUsuarios implements CasoDeUso<Usuario,void>{
     async executar(usuario: Usuario): Promise<any> {
 
     const usuarioExistente = await this.repo.buscarPorEmail(usuario.email);
+
+
         
     if (usuarioExistente) {
         throw new Error('Usuário já existe');
