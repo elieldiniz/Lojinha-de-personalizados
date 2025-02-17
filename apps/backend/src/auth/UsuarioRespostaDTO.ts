@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Perfil } from '@prisma/client';
 
 export default class UsuarioRespostaDTO {

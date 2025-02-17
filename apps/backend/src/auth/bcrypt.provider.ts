@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { ProvedorCriptografia } from '@iroperson/core';
 import { Injectable } from '@nestjs/common';
 import * as bcrypt from 'bcrypt'

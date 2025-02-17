@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { IsEmail, IsOptional, IsString, Length, IsEnum } from 'class-validator';
 import { Perfil } from '@prisma/client';  // Importe a enumeração Perfil do Prisma
 
