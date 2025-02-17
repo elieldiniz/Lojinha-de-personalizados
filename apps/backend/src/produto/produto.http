@@ -1,0 +1,45 @@
+GET http://localhost:4000/produto
+
+###
+
+GET http://localhost:4000/produto/11
+
+###
+
+DELETE  http://localhost:4000/produto/
+
+###
+
+POST http://localhost:4000/produto
+Content-Type: application/json
+
+{
+  "id": 11,
+  "nome": "Caneca \"canecas novas\"",
+  "descricao": "Caneca perfeita para presentear aquela amiga especial.",
+  "imagem": "https://i.postimg.cc/C5HF5Ln6/best-friend-cup.png",
+  "nota": 4.8,
+  "videoRevisao": "https://www.youtube.com/embed/exampleVideo6",
+  "tags": [
+    "Amiga",
+    "Presente"
+  ],
+  "precoBase": 39.99,
+  "precoPromocional": 29.99,
+  "menorPreco": 24.99,
+  "maiorPreco": 49.99,
+  "precoMedio": 37.99,
+  "personalizavel": false,
+  "mockup": null,
+  "especificacoes": {
+    "Peso": "310 gr",
+    "Altura": "9.50 cm",
+    "Largura": "8.00 cm",
+    "Produto": "Caneca classe AAA",
+    "Material": "Porcelana",
+    "destaque": "Uma linda opção de presente para sua melhor amiga!",
+    "Capacidade": "320 ml",
+    "Comprimento": "9.00 cm",
+    "InformaçõesAdicionais": "Lavável em máquina de lavar louça e resistente a micro-ondas."
+  }
+}

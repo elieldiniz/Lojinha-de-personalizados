@@ -1,14 +1,14 @@
 /* eslint-disable prettier/prettier */
 import { Injectable, Logger, HttpException } from '@nestjs/common';
 import { CriarUsuarioDTO } from './CriarUsuarioDTO';
-import { PrismaService } from 'src/db/prisma.provider';
+import { PrismaProvider } from 'src/db/prisma.provider';
 import { Usuario } from '@prisma/client';
 
 @Injectable()
 export class UsuarioRepositorio {
     private readonly logger = new Logger(UsuarioRepositorio.name);
 
-    constructor(private readonly prisma: PrismaService) {}
+    constructor(private readonly prisma: PrismaProvider) {}
 
     async salvar(usuario: CriarUsuarioDTO): Promise<Usuario> {
         this.logger.log('Salvando usuário...');
