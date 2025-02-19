@@ -27,8 +27,9 @@ export class PedidoPrisma {
   async salvar(pedido: Pedido): Promise<void> {
     await this.prisma.pedido.create({
       data: {
+        usuario: { connect: { id: pedido.usuarioId } },
         data: pedido.data,
-        status: pedido.status, // Certifique-se de que a enum está correta
+        status: pedido.status,
         valorTotal: pedido.valorTotal,
         formaPagamento: pedido.formaPagamento,
         entrega: { 
