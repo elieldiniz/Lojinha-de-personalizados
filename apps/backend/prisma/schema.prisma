@@ -61,7 +61,7 @@ model Pedido {
   usuarioId      String   @map("usuario_id")
   data           DateTime @default(now()) @map("data")
   valorTotal     Float    @map("valor_total")
-  status         StatusPedido @default(PENDENTE) @map("status")
+  status         String
   formaPagamento FormaPagamento @map("forma_pagamento")
 
   entrega   PedidoEntrega @relation(fields: [entregaId], references: [id])

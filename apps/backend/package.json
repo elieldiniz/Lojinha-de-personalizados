@@ -6,8 +6,8 @@
   "private": true,
   "license": "UNLICENSED",
   "prisma": {
-      "seed": "ts-node prisma/seed.ts"
-    },
+    "seed": "ts-node prisma/seed.ts"
+  },
   "scripts": {
     "prisma:generate": "prisma generate",
     "build": "nest build",
@@ -78,6 +78,5 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  
   }
 }
