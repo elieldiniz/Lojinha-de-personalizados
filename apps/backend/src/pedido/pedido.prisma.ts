@@ -25,13 +25,22 @@ export class PedidoPrisma {
   }
 
   async salvar(pedido: Pedido): Promise<void> {
+
+    const usuario = await this.prisma.usuario.findUnique({
+      where: { id: pedido.usuarioId }
+    });
+  
+    if (!usuario) {
+      throw new Error("Usuário não encontrado");
+    }
     await this.prisma.pedido.create({
       data: {
-        usuario: { connect: { id: pedido.usuarioId } },
+        usuario: { connect: { id: usuario.id } },
         data: pedido.data,
         status: pedido.status,
         valorTotal: pedido.valorTotal,
         formaPagamento: pedido.formaPagamento,
+
         entrega: { 
           create: {
             nome: pedido.entrega.nome,
@@ -43,6 +52,7 @@ export class PedidoPrisma {
             estado: pedido.entrega.estado, 
           },
         },
+
         itens: {
           create: pedido.itens.map((item) => ({
             produtoId: item.produto.id,
