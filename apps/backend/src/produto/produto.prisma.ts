@@ -9,6 +9,8 @@ export class ProdutoPrismaTs {
     constructor(private readonly prisma: PrismaProvider ) {}
 
     async salvar(produto: Produto): Promise<void>{
+
+        console.log(produto.id)
         await this.prisma.produto.upsert({
             where: {id: produto.id ?? -1},
             update: produto,

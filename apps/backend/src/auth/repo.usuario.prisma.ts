@@ -27,7 +27,7 @@ export class UsuarioRepositorio {
                 }
             });
 
-            this.logger.log('Usuário salvo com sucesso!');
+            this.logger.log(usuarioSalvo.id);
             return usuarioSalvo;
         } catch (error) {
             this.logger.error('Erro ao salvar usuário:', error);

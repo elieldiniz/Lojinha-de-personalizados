@@ -11,8 +11,7 @@ POST http://localhost:4000/pedidos
 Content-Type: application/json
 
 {
-    "usuarioId": "1",
-    "usuario":   
+    "usuarioId": "15ddd61c-54f1-4844-8ddb-46b98344877c",
     "data": "2021-09-01T00:00:00.000Z",
     "valorTotal": 200.00,
     "status": "PENDENTE",
@@ -30,12 +29,12 @@ Content-Type: application/json
         {
             "quantidade": 1,
             "precoUnitario": 100.00,
-            "produtoId": 1
+            "produtoId": 11
         },
         {
-            "quantidade": 1,
+            "produtoId": 2,
             "precoUnitario": 100.00,
-            "produtoId": 2
+            "quantidade": 11
         }
     ]
 }
