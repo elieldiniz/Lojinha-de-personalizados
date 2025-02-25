@@ -11,7 +11,7 @@ POST http://localhost:4000/pedidos
 Content-Type: application/json
 
 {
-    "usuarioId": "15ddd61c-54f1-4844-8ddb-46b98344877c",
+    "usuarioId": "55c605af-f763-4f31-b7e1-f75405581124",
     "data": "2021-09-01T00:00:00.000Z",
     "valorTotal": 200.00,
     "status": "PENDENTE",

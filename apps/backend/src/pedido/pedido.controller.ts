@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
 import { PedidoPrisma } from './pedido.prisma';
 import { Pedido } from '@iroperson/core';
