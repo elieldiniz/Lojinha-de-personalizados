@@ -1,10 +1,11 @@
+
 GET http://localhost:4000/pedidos
 
 ###
-GET http://localhost:4000/pedidos/1
+GET http://localhost:4000/pedidos/4
 
 ###
-DELETE http://localhost:4000/pedidos/1
+DELETE http://localhost:4000/pedidos/3
 
 ###
 POST http://localhost:4000/pedidos

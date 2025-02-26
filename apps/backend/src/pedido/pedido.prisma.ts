@@ -66,6 +66,7 @@ export class PedidoPrisma {
             estado: pedido.entrega.estado,
           },
         },
+      
         itens: {
           create: pedido.itens.map((item, index) => {
             console.log(`Processando item ${index}:`, item);
@@ -88,7 +89,7 @@ export class PedidoPrisma {
       },
     });
   
-    console.log('Pedido salvo com sucesso!');
+    
   }
   
   async excluir(id: number): Promise<void> {
