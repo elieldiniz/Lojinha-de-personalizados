@@ -1,12 +1,15 @@
+'use client'
 import Logo from '../shared/Logo'
 import IconeCarrinho from '../shared/IconeCarrinho'
 import Link from 'next/link'
 import Image from 'next/image'
 
-// import useCarrinho from '@/data/hooks/useCarrinho'
+import useCarrinho from '@/data/hooks/useCarrinho'
 
 export default function Cabecalho() {
-    const qtdeItens = 0;
+
+    const {qtdeItens} = useCarrinho()
+
     return (
         <div
             className="flex flex-col items-center h-24 "
