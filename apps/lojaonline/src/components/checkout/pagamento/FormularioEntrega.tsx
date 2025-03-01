@@ -25,20 +25,20 @@ export default function FormularioEntrega(props: FormularioEntregaProps) {
                     placeholder="Nome Completo"
                     value={entrega.nome}
                     onChange={alterarAtributo('nome')}
-                    className="input"
+                    className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-violet-500"
                 />
                 <div className="flex gap-5">
                     <input
                         placeholder="E-mail"
                         value={entrega.email}
                         onChange={alterarAtributo('email')}
-                        className="input flex-1"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                     <input
                         placeholder="CPF"
                         value={entrega.cpf}
                         onChange={alterarAtributo('cpf')}
-                        className="input flex-1"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                 </div>
                 <div className="flex gap-5">
@@ -46,13 +46,13 @@ export default function FormularioEntrega(props: FormularioEntregaProps) {
                         placeholder="Logradouro"
                         value={entrega.logradouro}
                         onChange={alterarAtributo('logradouro')}
-                        className="input flex-1"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                     <input
                         placeholder="Complemento"
                         value={entrega.complemento}
                         onChange={alterarAtributo('complemento')}
-                        className="input"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                 </div>
                 <div className="flex gap-5">
@@ -60,13 +60,13 @@ export default function FormularioEntrega(props: FormularioEntregaProps) {
                         placeholder="Cidade"
                         value={entrega.cidade}
                         onChange={alterarAtributo('cidade')}
-                        className="input flex-1"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                     <input
                         placeholder="Estado"
                         value={entrega.estado}
                         onChange={alterarAtributo('estado')}
-                        className="input flex-1"
+                        className="input bg-violet-dark/70 text-white placeholder:text-white/50 rounded-lg p-3 flex-1 focus:outline-none focus:ring-2 focus:ring-violet-500"
                     />
                 </div>
             </div>
