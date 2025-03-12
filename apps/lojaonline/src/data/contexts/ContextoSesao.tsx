@@ -1,15 +1,23 @@
-import { ReactNode } from "react";
-import { createContext } from "@";
+import { ReactNode, createContext } from "react";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function ProvedorSesão({ children }: LayoutProps) {
+interface SessaoContextData {
+  numero: number;
+}
+
+// Cria o contexto com um valor padrão
+const ContextoSesao = createContext<SessaoContextData>({ numero: 0 });
+
+export default function ProvedorSesao({ children }: LayoutProps) {
+  // Valor que será disponibilizado no contexto
+  const valorContexto: SessaoContextData = { numero: 1000 };
+
   return (
-    <div>
-      <ContextoSesao>{children}</ContextoSesao>
+    <ContextoSesao.Provider value={valorContexto}>
       {children}
-    </div>
+    </ContextoSesao.Provider>
   );
 }

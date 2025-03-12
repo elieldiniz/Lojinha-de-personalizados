@@ -1,9 +1,10 @@
-import { ProvedorSessao } from "@/data/contexts/ContextoSesao";
+import  ProvedorSesão  from "@/data/contexts/ContextoSesao";
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export default function Layout(props: any){
     return (
         <div>
-            <ProvedorSessao>{props.choeldren}</ProvedorSessao>
-            {props.chieldren}</div>
+            <ProvedorSesão>{props.choeldren}</ProvedorSesão>
+        </div>
     )
 }
