@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Ótimo! Aqui está o README atualizado com a estrutura que você gostou:  
 
-## Getting Started
+---
 
-First, run the development server:
+# 🛍️ Loja Online  
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+Bem-vindo ao repositório da **Loja Online**, um projeto moderno desenvolvido com **Next.js**, **React** e **Tailwind CSS** para oferecer uma experiência fluida e responsiva de e-commerce.  
+
+## 🚀 Tecnologias Utilizadas  
+
+- **[Next.js 15](https://nextjs.org/)** – Framework para aplicações web performáticas  
+- **[React 19](https://react.dev/)** – Biblioteca para interfaces reativas  
+- **[TypeScript](https://www.typescriptlang.org/)** – Tipagem estática para maior segurança  
+- **[Tailwind CSS 3](https://tailwindcss.com/)** – Framework CSS utilitário  
+- **[Zustand](https://zustand-demo.pmnd.rs/)** – Gerenciamento de estado leve e eficiente  
+- **[Tabler Icons](https://tabler-icons.io/)** – Conjunto de ícones modernos  
+- **[ESLint](https://eslint.org/)** – Análise e padronização de código  
+
+## 📦 Estrutura do Projeto  
+
+```
+📦 src  
+ ┣ 📂 components        # Componentes reutilizáveis  
+ ┣ 📂 pages             # Páginas do Next.js  
+ ┣ 📂 styles            # Estilos globais  
+ ┣ 📂 services          # Comunicação com a API  
+ ┣ 📂 store             # Gerenciamento de estado (Zustand)  
+ ┣ 📂 utils             # Funções auxiliares  
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎯 Funcionalidades  
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+✅ **Carrinho de compras** dinâmico  
+✅ **Filtro de produtos** avançado  
+✅ **Pagamento integrado**  
+✅ **Acompanhamento de pedidos**  
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🚀 Como Rodar o Projeto  
 
-## Learn More
+### 1️⃣ Pré-requisitos  
 
-To learn more about Next.js, take a look at the following resources:
+- **[Node.js 18+](https://nodejs.org/)**  
+- **Gerenciador de pacotes**: `npm` ou `yarn`  
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### 2️⃣ Instalar Dependências  
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```sh
+npm install
+# ou
+yarn install
+```
 
-## Deploy on Vercel
+### 3️⃣ Iniciar o Servidor  
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```sh
+npm run dev
+# ou
+yarn dev
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Acesse **http://localhost:3000** no navegador.  
+
+## 👨‍💻 Contribuindo  
+
+1. Crie uma branch: `git checkout -b minha-feature`  
+2. Faça commit das mudanças: `git commit -m "Descrição da mudança"`  
+3. Envie a branch: `git push origin minha-feature`  
+4. Abra um **Pull Request** 🚀  
+
+## 📜 Licença  
+
+Projeto licenciado sob a **MIT License**.  
+
+---
+
+Caso queira personalizar mais alguma parte, me avise! 🚀
