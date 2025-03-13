@@ -5,7 +5,7 @@ import Logo from "@/components/shared/Logo"; // Importação da logo
 export default function Cadastro() {
   return (
     <>
-      <AuthPage 
+      <AuthPage
          logo={<Logo />} 
          loginTitle="Entrar na Plataforma" 
          cadastroTitle="Cadastrar" 

@@ -1,3 +1,5 @@
+'use client'
+import * as React from 'react';
 import { ReactNode, createContext } from "react";
 
 interface LayoutProps {
@@ -8,16 +10,20 @@ interface SessaoContextData {
   numero: number;
 }
 
-// Cria o contexto com um valor padrão
+// Cria o contexto com o tipo explícito
 const ContextoSesao = createContext<SessaoContextData>({ numero: 0 });
 
-export default function ProvedorSesao({ children }: LayoutProps) {
-  // Valor que será disponibilizado no contexto
-  const valorContexto: SessaoContextData = { numero: 1000 };
+
+
+export default function ProvedorSesao({ children }: LayoutProps): JSX.Element {
+  
+  const valorContexto: SessaoContextData = { numero:0 };
 
   return (
-    <ContextoSesao.Provider value={valorContexto}>
-      {children}
-    </ContextoSesao.Provider>
+    <div className='bg-black text-cyan-200 border-s-red-600' >
+          <ContextoSesao.Provider value={valorContexto}>
+            {children}
+        </ContextoSesao.Provider>
+    </div>
   );
 }

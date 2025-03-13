@@ -1,12 +1,13 @@
 import { useContext } from "react"
 import ContextoSessao from "@/data/contexts/ContextoSesao"
+
 export default function PaginaTest(){
 
-    useContext(ContextoSessao)
+    const {numero} = useContext(ContextoSessao)
 
     return (
         <div>
-            <h1>Test</h1>
+            <h1>{numero}</h1>
         </div>
     )
 }
