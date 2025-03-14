@@ -7,5 +7,5 @@ import LoginUsuario from './service/LoginUsuario'
 
 export { RegistrarUsuarios,LoginUsuario }
 
-//interfece
+
 export type { Usuario,RepositorioUsuario,ProvedorCriptografia }
