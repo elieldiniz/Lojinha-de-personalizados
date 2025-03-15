@@ -3,6 +3,7 @@ import Pagina from '@/components/template/Pagina';
 import { ProvedorCarrinho } from '@/data/contexts/ContextoCarrinho';
 import { ProvedorPagamento } from '@/data/contexts/ContextoPagamento';
 import { ProvedorProdutos } from '@/data/contexts/ContextoProdutos';
+import{ProvedorSessao } from '@/data/contexts/ContextoSesao'
 
 interface LayoutProps {
     children: ReactNode;
@@ -10,12 +11,14 @@ interface LayoutProps {
 
 export default function Layout({ children }: LayoutProps): JSX.Element {
     return (
-        <ProvedorProdutos>
-            <ProvedorCarrinho>
-                <ProvedorPagamento>
-                    <Pagina>{children}</Pagina>
-                </ProvedorPagamento>
-            </ProvedorCarrinho>
-        </ProvedorProdutos>
+            <ProvedorSessao>
+                         <ProvedorProdutos>
+                    <ProvedorCarrinho>
+                        <ProvedorPagamento>
+                            <Pagina>{children}</Pagina>
+                        </ProvedorPagamento>
+                    </ProvedorCarrinho>
+                </ProvedorProdutos>
+            </ProvedorSessao>
     );
 }

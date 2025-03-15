@@ -1,40 +1,28 @@
-'use client'
+"use client";
 import { useState } from "react";
+import useLogin from "@/data/hooks/useLogin";
 import Link from "next/link";
-import { IconEye,  IconEyeOff } from "@tabler/icons-react";
-
-interface ApiResponse {
-  mensagem: string;
-  token?: string;
-}
+import { IconEye, IconEyeOff } from "@tabler/icons-react";
 
 interface FormLoginAuthProps {
   toggleMode: () => void;
-  httpPost: (url: string, dados: Record<string, unknown>) => Promise<ApiResponse>;
   logo: React.ReactNode;
   loginTitle: string;
 }
 
-export default function FormLoginAuth({ toggleMode, httpPost, logo, loginTitle }: FormLoginAuthProps) {
+export default function FormLoginAuth({ toggleMode, logo, loginTitle }: FormLoginAuthProps) {
+  const { autenticar } = useLogin();
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
-  const [mostrarSenha, SetMostrarSenha] = useState(false)
+  const [mostrarSenha, setMostrarSenha] = useState(false);
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      const response = await httpPost('/auth/login', { email, senha });
-      console.log("Resultado do login:", response);
-    } catch (error) {
-      console.error("Erro no login:", error);
+    const sucesso = await autenticar(email, senha);
+    if (sucesso) {
+      console.log("Usuário logado com sucesso!");
     }
   };
-
-  function alterarMostarSenha(){
-    SetMostrarSenha(!mostrarSenha)
-  }
-
-
 
   return (
     <div 
@@ -42,10 +30,7 @@ export default function FormLoginAuth({ toggleMode, httpPost, logo, loginTitle }
       style={{ background: 'radial-gradient(50% 50% at 50% 50%, #2d0064 0%, #0d001c 100%)' }}
     >
       <div className="relative flex flex-col justify-center items-center w-full max-w-sm p-6 bg-opacity-10 backdrop-blur-md rounded-lg shadow-lg">
-        <Link
-          href="/"
-          className="absolute top-2 left-2 text-sm text-white hover:text-purple-300"
-        >
+        <Link href="/" className="absolute top-2 left-2 text-sm text-white hover:text-purple-300">
           ← Voltar
         </Link>
         {logo}
@@ -61,26 +46,20 @@ export default function FormLoginAuth({ toggleMode, httpPost, logo, loginTitle }
                        focus:border-purple-500 focus:ring-2 focus:ring-purple-500 transition-all duration-200 placeholder-gray-400"
             placeholder="Digite seu email"
           />
-          <div className=" flex w-full px-4 py-3 text-white bg-zinc-900 bg-opacity-70 border border-transparent rounded-lg outline-none 
+          <div className="flex w-full px-4 py-3 text-white bg-zinc-900 bg-opacity-70 border border-transparent rounded-lg outline-none 
                         focus:border-purple-500 focus:ring-2 focus:ring-purple-500 transition-all duration-200 placeholder-gray-400">
             <input 
-              type="password"
+              type={mostrarSenha ? "text" : "password"}
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               className="bg-transparent outline-none flex-1"
               placeholder="Digite sua senha"
-
             />
-            { mostrarSenha ? (
-               <IconEyeOff
-               onClick={alterarMostarSenha}
-               className="text-zinc-400"/>
+            {mostrarSenha ? (
+              <IconEyeOff onClick={() => setMostrarSenha(false)} className="text-zinc-400 cursor-pointer"/>
             ) : (
-                <IconEye 
-                onClick={alterarMostarSenha}
-                className="text-zinc-400"/>
+              <IconEye onClick={() => setMostrarSenha(true)} className="text-zinc-400 cursor-pointer"/>
             )}
-
           </div>
           
           <button 

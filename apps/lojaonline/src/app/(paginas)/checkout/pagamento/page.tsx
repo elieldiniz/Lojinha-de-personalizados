@@ -5,11 +5,21 @@ import ResumoPagamento from '@/components/checkout/pagamento/ResumoPagamento'
 import SelecaoFormaPagamento from '@/components/checkout/pagamento/SelecaoFormaPagamento'
 import useCarrinho from '@/data/hooks/useCarrinho'
 import usePagamento from '@/data/hooks/usePagamento'
+import { useSessao } from '@/data/contexts/ContextoSesao'
+import { useRouter } from 'next/navigation'
 
 export default function Page() {
     const { parcelamento, qtdeItens, valorTotal, valorTotalCheio } = useCarrinho()
     const { entrega, formaPagamento, alterarEntrega, alterarFormaPagamento, finalizarCompra } =
         usePagamento()
+    const { usuario } = useSessao()
+
+    const router = useRouter()
+
+    if (!usuario) {
+        router.push('http://localhost:3000/auth/cadastro')
+        return null;
+    }
 
     return (
         <div className="flex flex-col gap-7 container">

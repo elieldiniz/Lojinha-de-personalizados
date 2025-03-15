@@ -1,20 +1,16 @@
 'use client'
 import { IconEye, IconEyeOff } from "@tabler/icons-react";
 import { useState } from "react";
-
-interface ApiResponse {
-  mensagem: string;
-  token?: string;
-}
+import useCadastro from "@/data/hooks/useCadastro"; 
 
 interface FormCadastroProps {
   toggleMode: () => void;
-  httpPost: (url: string, dados: Record<string, unknown>) => Promise<ApiResponse>;
   logo: React.ReactNode;
   cadastroTitle: string;
 }
 
-export default function FormCadastro({ toggleMode, httpPost, logo, cadastroTitle }: FormCadastroProps) {
+export default function FormCadastro({ toggleMode, logo, cadastroTitle }: FormCadastroProps) {
+  const { cadastrar } = useCadastro();
   const [nome, setNome] = useState("");
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -23,14 +19,10 @@ export default function FormCadastro({ toggleMode, httpPost, logo, cadastroTitle
 
   const handleCadastro = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      // Utiliza o método POST para enviar os dados para o endpoint correto
-      const response = await httpPost('/auth/registrar', { nome, email, senha, telefone });
-      console.log("Dados cadastrados:", response);
-      // Se o cadastro for bem-sucedido, você pode alternar para o formulário de login
-      toggleMode();
-    } catch (error) {
-      console.error("Erro no cadastro:", error);
+    const sucesso = await cadastrar(nome, email, senha, telefone);
+    if (sucesso) {
+      console.log("Cadastro realizado com sucesso!");
+      toggleMode(); // Alterna para a tela de login
     }
   };
 
@@ -86,14 +78,10 @@ export default function FormCadastro({ toggleMode, httpPost, logo, cadastroTitle
               placeholder="Digite sua senha"
 
             />
-            { mostrarSenha ? (
-               <IconEyeOff
-               onClick={alterarMostarSenha}
-               className="text-zinc-400"/>
+ {mostrarSenha ? (
+              <IconEyeOff onClick={() => alterarMostarSenha()} />
             ) : (
-                <IconEye 
-                onClick={alterarMostarSenha}
-                className="text-zinc-400"/>
+              <IconEye onClick={() => alterarMostarSenha()} />
             )}
 
           </div>

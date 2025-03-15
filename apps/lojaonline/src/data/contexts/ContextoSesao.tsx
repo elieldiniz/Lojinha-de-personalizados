@@ -1,29 +1,42 @@
-'use client'
-import * as React from 'react';
-import { ReactNode, createContext } from "react";
+"use client";
+import React, { createContext, useContext, useState, ReactNode } from "react";
 
-interface LayoutProps {
-  children: ReactNode;
+interface Usuario {
+  id: string;
+  nome: string;
+  email: string;
 }
 
 interface SessaoContextData {
-  numero: number;
+  usuario: Usuario | null;
+  logar: (usuario: Usuario) => void;
+  deslogar: () => void;
 }
 
-// Cria o contexto com o tipo explícito
-const ContextoSesao = createContext<SessaoContextData>({ numero: 0 });
+export const ContextoSessao = createContext<SessaoContextData | undefined>(undefined);
+
+export const useSessao = () => {
+  const contexto = useContext(ContextoSessao);
+  if (!contexto) {
+    throw new Error("useSessao deve ser usado dentro de um ProvedorSessao");
+  }
+  return contexto;
+};
+
+interface ProvedorSessaoProps {
+  children: ReactNode;
+}
 
 
+export const ProvedorSessao = ({ children }: ProvedorSessaoProps) => {
+  const [usuario, setUsuario] = useState<Usuario | null>(null);
 
-export default function ProvedorSesao({ children }: LayoutProps): JSX.Element {
-  
-  const valorContexto: SessaoContextData = { numero:0 };
+  const logar = (usuario: Usuario) => setUsuario(usuario);
+  const deslogar = () => setUsuario(null);
 
   return (
-    <div className='bg-black text-cyan-200 border-s-red-600' >
-          <ContextoSesao.Provider value={valorContexto}>
-            {children}
-        </ContextoSesao.Provider>
-    </div>
+    <ContextoSessao.Provider value={{ usuario, logar, deslogar }}>
+      {children}
+    </ContextoSessao.Provider>
   );
-}
+};

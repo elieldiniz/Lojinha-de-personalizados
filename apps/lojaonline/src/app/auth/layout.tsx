@@ -1,19 +1,15 @@
-'use client'
-
+"use client";
 import { ReactNode } from "react";
-import ProvedorSesao from "@/data/contexts/ContextoSesao"; // Importação correta do default export
+import { ProvedorLogin } from "@/data/contexts/ContextoLogin";
 
 interface LayoutProps {
   children: ReactNode;
 }
 
-export default function AuthLayout({ children }: LayoutProps): JSX.Element {
+export default function Layout({ children }: LayoutProps) {
   return (
-    <div>
-      <ProvedorSesao>
-        {children}
-      </ProvedorSesao>
-    </div>
+    <ProvedorLogin>
+      {children}
+    </ProvedorLogin>
   );
 }
-
